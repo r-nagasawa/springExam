@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.eightbit.exam.mapper.questionMapper">
+	<resultMap type="jp.eightbit.exam.entity.Questions" id="questmap">
+		<result column="id" property="id" />
+		<result column="sentence" property="sentence" />
+		<result column="option1_value" property="option1_value" />
+		<result column="option1_label" property="option1_label" />
+		<result column="option2_value" property="option2_value" />
+		<result column="option2_label" property="option2_label" />
+		<result column="option3_value" property="option3_value" />
+		<result column="option3_label" property="option3_label" />
+		<result column="option4_value" property="option4_value" />
+		<result column="option4_label" property="option4_label" />
+		<result column="answer" property="answer" />
+	</resultMap>
+  <select id="findAll" resultMap="questmap">
+	select * from questions
+  </select>
+  <select id="findOne" resultMap="questmap">
+	select * from questions where id= #{id}
+  </select>
+</mapper>
