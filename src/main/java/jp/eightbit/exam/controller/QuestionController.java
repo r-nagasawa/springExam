@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import jp.eightbit.exam.entity.Questions;
 import jp.eightbit.exam.model.QuestionModel;
+import jp.eightbit.exam.model.QuestionResult;
 import jp.eightbit.exam.service.QuestionService;
 
 @Controller
@@ -45,6 +46,7 @@ public class QuestionController {
 		if (result.hasErrors()) {
 			nextPage = "index";
 		} else {
+			//セッションオブジェクトにquestionModelインスタンスを格納
 			httpSession.setAttribute("questionModel", questionModel);
 			nextPage = "redirect:/question/1";
 		}
@@ -64,11 +66,11 @@ public class QuestionController {
 	@PostMapping("/answer/{index}")
 	public String answerHandle(Model model, @PathVariable("index") Integer index, HttpServletRequest request) {
 		//ユーザーから受け取ったデータをString型にキャストする。
-		String answerVal = (String) request.getParameter("answer" + index.toString());
+		String answerVal = (String)request.getParameter("answer" + index.toString());
 		String nextPage = ""; 
 		
 		//QuestionModelをインスタンス化する
-		QuestionModel questionModel = (QuestionModel) httpSession.getAttribute("questionModel");
+		QuestionModel questionModel = (QuestionModel)httpSession.getAttribute("questionModel");
 		//indexの数値に対応したQuestionModelセッターにデータを格納する。
 		switch(index.intValue()) {
 			case 1:
@@ -80,20 +82,24 @@ public class QuestionController {
 				break;
 			
 			case 3:
-				questionModel.setAnswer2(answerVal);
+				questionModel.setAnswer3(answerVal);
 		}
 		
 		index++;
 		//3以下なら問題ページにリダイレクト、4以上になったら結果ページに遷移
 		if(index > 3) {
-			//List<QuestionResult> resultList = questService.getResult(questionModel);
+			List<QuestionResult> resultList = questService.getResult(questionModel);
+			model.addAttribute("resultList", resultList);
+			model.addAttribute("name", questionModel.getName());
+			System.out.println(questionModel);
 			nextPage = "result";
 		}else {
 			nextPage = "redirect:/question/" + index;
 		}
-		
+		//セッションにインスタンスを格納
 		httpSession.setAttribute("questionModel", questionModel);
 		return nextPage;
+		
 	}
 	/*
 	//エラー処理

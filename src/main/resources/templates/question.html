@@ -14,7 +14,7 @@
 <div>
 	<p th:text="${questions.sentence}"></p>
 </div>
-<form action="@{/answer/${index}|" method="post">
+<form th:action="@{/answer/__${index}__}" method="post">
 	<label>
   		<input type="radio" th:name="|result${index}|" th:value = "${questions.option1_label}">
   		[[${questions.option1_value}]].[[${questions.option1_label}]]
