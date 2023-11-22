@@ -3,9 +3,9 @@ package jp.eightbit.exam.model;
 public class QuestionResult{
 	private String sentence;
 	private String answerValue;
-	private String answerLable;
+	private String answerLabel;
 	private String userAnswerValue;
-	private String userAnswerLable;
+	private String userAnswerLabel;
 	private boolean trueOrFalse;
 	
 	
@@ -21,11 +21,11 @@ public class QuestionResult{
 	public void setAnswerValue(String answerValue) {
 		this.answerValue = answerValue;
 	}
-	public String getAnswerLable() {
-		return answerLable;
+	public String getAnswerLabel() {
+		return answerLabel;
 	}
-	public void setAnswerLable(String answerLable) {
-		this.answerLable = answerLable;
+	public void setAnswerLabel(String answerLabel) {
+		this.answerLabel = answerLabel;
 	}
 	public String getUserAnswerValue() {
 		return userAnswerValue;
@@ -33,11 +33,11 @@ public class QuestionResult{
 	public void setUserAnswerValue(String userAnswerValue) {
 		this.userAnswerValue = userAnswerValue;
 	}
-	public String getUserAnswerLable() {
-		return userAnswerLable;
+	public String getUserAnswerLabel() {
+		return userAnswerLabel;
 	}
-	public void setUserAnswerLable(String userAnswerLable) {
-		this.userAnswerLable = userAnswerLable;
+	public void setUserAnswerLabel(String userAnswerLabel) {
+		this.userAnswerLabel = userAnswerLabel;
 	}
 	public boolean isTrueOrFalse() {
 		return trueOrFalse;
@@ -48,8 +48,8 @@ public class QuestionResult{
 	
 	@Override
 	public String toString() {
-		return "QuestionResult [sentence=" + sentence + ", answerValue=" + answerValue + ", answerLable=" + answerLable
-				+ ", userAnswerValue=" + userAnswerValue + ", userAnswerLavel=" + userAnswerLable + ", trueOrFalse="
+		return "QuestionResult [sentence=" + sentence + ", answerValue=" + answerValue + ", answerLabel=" + answerLabel
+				+ ", userAnswerValue=" + userAnswerValue + ", userAnswerLabel=" + userAnswerLabel + ", trueOrFalse="
 				+ trueOrFalse + "]";
 	}
 }

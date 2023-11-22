@@ -16,22 +16,22 @@
 </div>
 <form th:action="@{/answer/__${index}__}" method="post">
 	<label>
-  		<input type="radio" th:name="|result${index}|" th:value = "${questions.option1_label}">
+  		<input type="radio" th:name="|answer${index}|" th:value = "${questions.option1_value}">
   		[[${questions.option1_value}]].[[${questions.option1_label}]]
   	</label>
   	<br>
   	<label>
-  		<input type="radio" th:name="|result${index}|" th:value = "${questions.option2_label}">
+  		<input type="radio" th:name="|answer${index}|" th:value = "${questions.option2_value}">
   		[[${questions.option2_value}]].[[${questions.option2_label}]]
   	</label>
   	<br>
   	<label>
-  		<input type="radio" th:name="|result${index}|" th:value = "${questions.option3_label}">
+  		<input type="radio" th:name="|answer${index}|" th:value = "${questions.option3_value}">
   		[[${questions.option3_value}]].[[${questions.option3_label}]]
   	</label>
   	<br>
   	<label>
-  		<input type="radio" th:name="|result${index}|" th:value = "${questions.option4_label}">
+  		<input type="radio" th:name="|answer${index}|" th:value = "${questions.option4_value}">
   		[[${questions.option4_value}]].[[${questions.option4_label}]]
   	</label>
   	<br>

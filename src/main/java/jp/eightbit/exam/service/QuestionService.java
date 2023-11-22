@@ -38,31 +38,31 @@ public class QuestionService{
 			qr.setSentence(q.getSentence());
 			String answer = q.getAnswer();
 			qr.setAnswerValue(answer);
-			qr.setAnswerLable(this.getAnswerLable(answer, q));
+			qr.setAnswerLabel(this.getAnswerLabel(answer, q));
 			qr.setUserAnswerValue(this.getUserAnswerValue(i, questionModel));
 			qr.setTrueOrFalse(answer.equals(qr.getUserAnswerValue()));
-			qr.setUserAnswerLable(this.getUserAnswerLable(q, qr.getUserAnswerValue()));
+			qr.setUserAnswerLabel(this.getUserAnswerLabel(q, qr.getUserAnswerValue()));
 			rList.add(qr);
 		}
-		
+		System.out.println(questionModel);
 		return rList;
 	}
 	
 	
-	private String getAnswerLable(String answer, Questions q) {
-		String answerLable;
+	private String getAnswerLabel(String answer, Questions q) {
+		String answerLabel;
 		
 		if(answer.equals(q.getOption1_value())) {
-			answerLable = q.getOption1_label();
+			answerLabel = q.getOption1_label();
 		}else if(answer.equals(q.getOption2_value())) {
-			answerLable = q.getOption2_label();
+			answerLabel = q.getOption2_label();
 		}else if(answer.equals(q.getOption3_value())) {
-			answerLable = q.getOption3_label();
+			answerLabel = q.getOption3_label();
 		}else {
-			answerLable = q.getOption4_label();
+			answerLabel = q.getOption4_label();
 		}
 		
-		return answerLable;
+		return answerLabel;
 	}
 	
 	//ユーザーの選択した選択肢記号の値を取得して返却する
@@ -71,6 +71,7 @@ public class QuestionService{
 		switch(i) {
 			case 0 :
 				userAnsVal = questionModel.getAnswer1();
+				//System.out.println(userAnsVal);
 				break;
 				
 			case 1 :
@@ -84,7 +85,7 @@ public class QuestionService{
 	}
 	
 	//ユーザーが選択肢記号から選択した文字列を取得する
-	private String getUserAnswerLable(Questions q, String userAnswerValue) {
+	private String getUserAnswerLabel(Questions q, String userAnswerValue) {
 		
 		String userAnswerLab;
 		if(q.getOption1_value().equals(userAnswerValue)) {
@@ -100,9 +101,15 @@ public class QuestionService{
 		
 		return userAnswerLab;
 	}
-	/*
-	public int getCorrectCount(int i, List<QuestionResult> qrList) {
-		
-	}*/
+	
+	//正解の数を数えるメソッド
+	public int getCorrectCount(List<QuestionResult> qrList) {
+		int count = 0;
+		//リスト内のデータの数だけ繰り返す
+		for(QuestionResult qr: qrList) {
+			if(qr.isTrueOrFalse()) count++;
+		}
+		return count;
+	}
 
 }

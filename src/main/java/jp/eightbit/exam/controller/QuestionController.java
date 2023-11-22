@@ -88,10 +88,12 @@ public class QuestionController {
 		index++;
 		//3以下なら問題ページにリダイレクト、4以上になったら結果ページに遷移
 		if(index > 3) {
-			List<QuestionResult> resultList = questService.getResult(questionModel);
-			model.addAttribute("resultList", resultList);
+			List<QuestionResult> rList = questService.getResult(questionModel);
+			model.addAttribute("resultList", rList);
 			model.addAttribute("name", questionModel.getName());
-			System.out.println(questionModel);
+			model.addAttribute("questionCount", rList.size());
+			model.addAttribute("correctCount", questService.getCorrectCount(rList));
+			System.out.println(rList);
 			nextPage = "result";
 		}else {
 			nextPage = "redirect:/question/" + index;
@@ -101,11 +103,13 @@ public class QuestionController {
 		return nextPage;
 		
 	}
-	/*
+
 	//エラー処理
 	@ExceptionHandler(Exception.class)
 	private String exceptionHandler(Model model, Exception e) {
 		e.printStackTrace();
+		System.out.println(e.toString());
+		model.addAttribute("message", e.toString());
 		return "error";
-	}*/
+	}
 }
