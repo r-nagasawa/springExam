@@ -1,7 +1,7 @@
 package jp.eightbit.exam.model;
 
 import jakarta.validation.constraints.NotEmpty;
-
+//ユーザーの入力した値に関するModel
 public class QuestionModel{
 	
 	@NotEmpty(message="名前を入力してください。")

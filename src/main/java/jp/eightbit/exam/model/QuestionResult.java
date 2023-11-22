@@ -1,5 +1,6 @@
 package jp.eightbit.exam.model;
 
+//Userの入力した値を結果として表示するためのmodel
 public class QuestionResult{
 	private String sentence;
 	private String answerValue;

@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-//import jp.eightbit.exam.controller.QuestionResult;
 import jp.eightbit.exam.entity.Questions;
 import jp.eightbit.exam.mapper.questionMapper;
 import jp.eightbit.exam.model.QuestionModel;
@@ -71,7 +70,6 @@ public class QuestionService{
 		switch(i) {
 			case 0 :
 				userAnsVal = questionModel.getAnswer1();
-				//System.out.println(userAnsVal);
 				break;
 				
 			case 1 :

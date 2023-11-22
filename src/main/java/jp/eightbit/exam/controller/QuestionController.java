@@ -23,7 +23,7 @@ import jp.eightbit.exam.service.QuestionService;
 public class QuestionController {
 	
 	@Autowired
-	private HttpSession httpSession;
+	private HttpSession httpSession; //セッション
 	private final QuestionService questService;
 	
 	public QuestionController(QuestionService questionService) {
@@ -62,7 +62,7 @@ public class QuestionController {
 	    return "question";
 	}
 	
-	//答え合わせページでの処理
+	//問題文ページ処理　ユーザーの選択した選択肢のデータを受け取る
 	@PostMapping("/answer/{index}")
 	public String answerHandle(Model model, @PathVariable("index") Integer index, HttpServletRequest request) {
 		//ユーザーから受け取ったデータをString型にキャストする。
@@ -73,7 +73,7 @@ public class QuestionController {
 		QuestionModel questionModel = (QuestionModel)httpSession.getAttribute("questionModel");
 		//indexの数値に対応したQuestionModelセッターにデータを格納する。
 		switch(index.intValue()) {
-			case 1:
+			case 1: //index1は1問目に格納
 				questionModel.setAnswer1(answerVal);
 				break;
 			
@@ -88,12 +88,13 @@ public class QuestionController {
 		index++;
 		//3以下なら問題ページにリダイレクト、4以上になったら結果ページに遷移
 		if(index > 3) {
+			//4以上になったとき、modelに取得した値を入れてviewに渡す
 			List<QuestionResult> rList = questService.getResult(questionModel);
 			model.addAttribute("resultList", rList);
 			model.addAttribute("name", questionModel.getName());
 			model.addAttribute("questionCount", rList.size());
 			model.addAttribute("correctCount", questService.getCorrectCount(rList));
-			System.out.println(rList);
+			//System.out.println(rList);
 			nextPage = "result";
 		}else {
 			nextPage = "redirect:/question/" + index;
@@ -101,14 +102,13 @@ public class QuestionController {
 		//セッションにインスタンスを格納
 		httpSession.setAttribute("questionModel", questionModel);
 		return nextPage;
-		
 	}
 
 	//エラー処理
 	@ExceptionHandler(Exception.class)
 	private String exceptionHandler(Model model, Exception e) {
 		e.printStackTrace();
-		System.out.println(e.toString());
+		//System.out.println(e.toString());
 		model.addAttribute("message", e.toString());
 		return "error";
 	}

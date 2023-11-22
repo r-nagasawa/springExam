@@ -12,5 +12,4 @@ public interface questionMapper{
 	List<Questions> findAll();
 	
 	Questions findOne(long id);
-
 }
