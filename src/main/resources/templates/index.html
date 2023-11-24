@@ -18,7 +18,7 @@
     <div>
     	<form action="/nameCheck" th:object="${questionModel}" method="post">
 			<p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
-            <label for="title">名前：</label><input type="text" size="20" th:field="*{name}"/> <input type="submit" value="送信" />
+            <label for="title">名前：</label><input type="text" size="20" th:field="*{name}"/> <input type="submit" value="開始" />
         </form>
 	</div>
 </body>
