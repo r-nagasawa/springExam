@@ -18,7 +18,7 @@
 <form th:action="@{/answer/__${index}__}" method="post">
 	<label>
 		<!--th:nameの部分と紐づけてController/answerHandle内でデータを登録する-->
-  		<input type="radio" th:name="|answer${index}|" th:value = "${questions.option1_value}">
+  		<input type="radio" th:name="|answer${index}|" th:value = "${questions.option1_value}" checked>
   		[[${questions.option1_value}]].[[${questions.option1_label}]]
   	</label>
   	<br>
